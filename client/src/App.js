@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import styled from "styled-components";
 import Nav from "./components/Nav.js";
 
 function App() {

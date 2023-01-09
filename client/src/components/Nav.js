@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu } from "react-icons/md"
+import { MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose } from "react-icons/md"
 import { useState } from "react";
 const Col = styled.div`
-  width: 33.33%;
+  width: 33.3333%;
+  
 `
 const NavBox = styled.div`
   position: fixed;
   width: 100%;
   height: auto;
   &:hover{
-    background-color: #eee;
+    /* background-color: #eee; */
     transition: 0.5s;
   }
   &:not(:hover){
@@ -19,23 +20,50 @@ const NavBox = styled.div`
 `
 const NavTop = styled.div`
   width: 100%;
-  margin: 20px 0px 20px 0px;
+  margin: 0px 0px 20px 0px;
+  padding-top: 20px;
   display: flex;
 `
 const SideBar = styled.div`
-  svg{
+  width: 300px;
+  height: 250vh;
+  margin-top: -45px;
+  background-color: #fff;
+  position: fixed;
+  z-index: 999;
+  transform: translateX(${props => props.show});
+  transition: 0.5s;
+  svg {
+    width: 25px;
+    height: 25px;
+    margin: 10px 10px 0px 0px;
+    float: right;
     cursor: pointer;
-    margin: 0px 0px 0px 20px;
-    width: 20px;
-    height: 20px;
+    &:hover{
+      opacity: 0.3;
+      transition: 0.2s;
+    }
+    &:not(:hover){
+      transition: 0.2s;
+    }
   }
 `
+const Overlay = styled.div`
+  margin-top: -45px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 998;
+  visibility: ${props => props.show};
+`
+
 const NavLogo = styled.div`
   display: table;
   margin: auto;
   text-align: center;
   cursor: pointer;
-  width: 150px;
+  width: 140px;
   img {
     width: 30px;
     height: 30px;
@@ -52,6 +80,10 @@ const NavLogo = styled.div`
 const UserMenu = styled.div`
   float: right;
   margin-right: 50px;
+  padding-top: 5px;
+  @media screen and (max-width: 1000px) {
+    margin-right: 10px;
+  }
   svg {
     vertical-align: middle;
     cursor: pointer;
@@ -70,7 +102,7 @@ const UserMenu = styled.div`
   span {
     vertical-align: middle;
     cursor: pointer;
-    margin: 0px 5px 0px 5px;
+    margin: 0px 4px 0px 4px;
     font-size: 16px;
     &:hover{
       opacity: 0.3;
@@ -78,6 +110,12 @@ const UserMenu = styled.div`
     }
     &:not(:hover){
       transition: 0.3s;
+    }
+    &.none{
+      cursor: default;
+      &:hover{
+        opacity: 1;
+      }
     }
     @media screen and (max-width: 1000px) {
       display: none;
@@ -115,19 +153,37 @@ const NavItem = styled.div`
 `
 
 const Nav = () => {
-  const [open, setOpen] = useState(false);
-  const toggleSideBar = () => {
+  const [open, setOpen] = useState(null);
+  const openSideBar = () => {
     setOpen(true);
+  }
+  const closeSideBar = () => {
+    setOpen(false);
   }
   const navigate = useNavigate();
   return (
     <NavBox>
       
       <NavTop>
+        
         <Col>
-          <SideBar>
-            <MdMenu onClick={toggleSideBar} />
-          </SideBar>
+          <MdMenu style={{width: '20px', height: '20px', paddingTop: '5px', marginLeft : '20px', cursor : 'pointer'}} onClick={openSideBar}/>
+          {
+            open == true
+            ? <>
+                <Overlay show='visable' onClick={closeSideBar}/>
+                <SideBar show='0px'>
+                  <MdOutlineClose onClick={closeSideBar} />
+                </SideBar>
+              </>
+            : <>
+                <Overlay show='hidden' onClick={closeSideBar}/>
+                <SideBar show='-300px'>
+                  <MdOutlineClose onClick={closeSideBar} />
+                </SideBar>
+              </>
+
+          }
         </Col>
         <Col>
           <NavLogo>
@@ -139,7 +195,7 @@ const Nav = () => {
         <Col>
           <UserMenu>
             <span>Login</span>
-            <span style={{cursor : 'default !important'}}>|</span>
+            <span className="none">|</span>
             <span>Join</span>
             <MdSearch />
             <MdOutlineShoppingBag />
