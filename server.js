@@ -10,11 +10,14 @@ app.use(express.json());
 require('dotenv').config();
 
 MongoClient.connect(process.env.DB_URL, (error, client)=>{
+
   if(error) return console.log(error);
+
   app.listen(process.env.PORT, ()=>{
     console.log("server n db start");
-  })
-})
+  });
+
+});
 
 app.use(express.static(path.join(__dirname, '/client/build')));
 
