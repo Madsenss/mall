@@ -23,16 +23,39 @@ const NavTop = styled.div`
   margin: 0px 0px 20px 0px;
   padding-top: 20px;
   display: flex;
+  .menu {
+    width: 20px;
+    height: 20px;
+    padding-top: 5px;
+    margin-left : 20px;
+    cursor : pointer;
+    @media screen and (min-width: 1000px) {
+      display: none;
+    }
+    &:hover {
+      animation-name: shake;
+      animation-duration: 0.7s;
+    }
+    @keyframes shake {
+      0% { transform: rotate(0deg) }
+      25% { transform: rotate(-10deg) }
+      50% { transform: rotate(10deg) }
+      75% { transform: rotate(-10deg) }
+      100% { transform: rotate(0deg) }
+    }
+
+  }
 `
 const SideBar = styled.div`
   width: 300px;
   height: 250vh;
-  margin-top: -45px;
+  margin-top: -50px;
   background-color: #fff;
   position: fixed;
   z-index: 999;
   transform: translateX(${props => props.show});
   transition: 0.5s;
+  
   svg {
     width: 25px;
     height: 25px;
@@ -49,7 +72,7 @@ const SideBar = styled.div`
   }
 `
 const Overlay = styled.div`
-  margin-top: -45px;
+  margin-top: -50px;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -65,8 +88,8 @@ const NavLogo = styled.div`
   cursor: pointer;
   width: 140px;
   img {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     vertical-align: middle;
     margin-right: 5px;
   }
@@ -103,7 +126,8 @@ const UserMenu = styled.div`
     vertical-align: middle;
     cursor: pointer;
     margin: 0px 4px 0px 4px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     &:hover{
       opacity: 0.3;
       transition: 0.3s;
@@ -167,19 +191,19 @@ const Nav = () => {
       <NavTop>
         
         <Col>
-          <MdMenu style={{width: '20px', height: '20px', paddingTop: '5px', marginLeft : '20px', cursor : 'pointer'}} onClick={openSideBar}/>
+          <MdMenu className="menu" onClick={openSideBar}/>
           {
             open == true
             ? <>
-                <Overlay show='visable' onClick={closeSideBar}/>
-                <SideBar show='0px'>
+                <Overlay show="visable" onClick={closeSideBar}/>
+                <SideBar show="0px">
                   <MdOutlineClose onClick={closeSideBar} />
                 </SideBar>
               </>
             : <>
-                <Overlay show='hidden' onClick={closeSideBar}/>
-                <SideBar show='-300px'>
-                  <MdOutlineClose onClick={closeSideBar} />
+                <Overlay show="hidden"/>
+                <SideBar show="-300px">
+                  <MdOutlineClose/>
                 </SideBar>
               </>
 
@@ -187,8 +211,8 @@ const Nav = () => {
         </Col>
         <Col>
           <NavLogo>
-            <img src={process.env.PUBLIC_URL + '/logo192.png'} /> 
-            <span>React Store</span>
+            <img src={process.env.PUBLIC_URL + '/logop.png'} alt="logo" /> 
+            <span>Studio Uno</span>
           </NavLogo>
         </Col>
         
