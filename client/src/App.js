@@ -1,12 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav.js";
-import Bg from "./components/Bg.js";
+import Layout from "./components/Layout.js";
+import Footer from "./components/Footer.js";
 
 function App() {
   return (
-    <div className="App" style={{height : '1000px'}}>
+    <div className="App">
       <Routes>
-        <Route path="/" element={<><Nav /><Bg /></>} />
+        <Route path="/" element={
+          <>  
+            <Nav />
+            <Layout />
+            <Footer />
+          </>
+        }/>
       </Routes> 
     </div>
   );

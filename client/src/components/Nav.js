@@ -4,9 +4,9 @@ import { MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose
 import { useState } from "react";
 const Col = styled.div`
   width: 33.3333%;
-  
 `
 const NavBox = styled.div`
+  z-index: 997;
   position: fixed;
   width: 100%;
   height: auto;
@@ -48,7 +48,7 @@ const NavTop = styled.div`
 `
 const SideBar = styled.div`
   width: 300px;
-  height: 250vh;
+  height: 101%;
   margin-top: -50px;
   background-color: #fff;
   position: fixed;
@@ -86,27 +86,34 @@ const NavLogo = styled.div`
   margin: auto;
   text-align: center;
   cursor: pointer;
-  width: 140px;
+  width: fit-content;
   img {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     vertical-align: middle;
     margin-right: 5px;
   }
   span {
     vertical-align: middle;
     font-size: 20px;
+    font-weight: bold;
     margin-right: 5px;
   }
- 
+  @media screen and (max-width: 1000px) {
+    margin-top: 4px;
+    span {
+      font-size: 17px;
+    }
+    img {
+      width: 22px;
+      height: 22px;
+    }
+  }
 `
 const UserMenu = styled.div`
   float: right;
   margin-right: 50px;
   padding-top: 5px;
-  @media screen and (max-width: 1000px) {
-    margin-right: 10px;
-  }
   svg {
     vertical-align: middle;
     cursor: pointer;
@@ -144,6 +151,9 @@ const UserMenu = styled.div`
     @media screen and (max-width: 1000px) {
       display: none;
     }
+  }
+  @media screen and (max-width: 1000px) {
+    margin-right: 10px;
   }
 `
 const NavBottom = styled.div`
@@ -211,7 +221,7 @@ const Nav = () => {
         </Col>
         <Col>
           <NavLogo>
-            <img src={process.env.PUBLIC_URL + '/logop.png'} alt="logo" /> 
+            <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" /> 
             <span>Studio Uno</span>
           </NavLogo>
         </Col>
