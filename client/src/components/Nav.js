@@ -24,25 +24,25 @@ const NavBox = styled.div`
 `
 const NavTop = styled.div`
   width: 100%;
-  margin: 0px 0px 20px 0px;
   padding-top: 20px;
   display: flex;
-  .tt{
-    border: 1px solid black;
-  }
+
   .menu {
     width: 20px;
     height: 20px;
     padding-top: 5px;
     margin-left : 20px;
     cursor : pointer;
-    @media screen and (min-width: 1000px) {
+
+    @media screen and (min-width: 800px) {
       display: none;
     }
+
     &:hover {
       animation-name: shake;
       animation-duration: 0.7s;
     }
+
     @keyframes shake {
       0% { transform: rotate(0deg) }
       25% { transform: rotate(-10deg) }
@@ -68,10 +68,12 @@ const SideBar = styled.div`
     margin: 10px 10px 0px 0px;
     float: right;
     cursor: pointer;
+
     &:hover{
       opacity: 0.3;
       transition: 0.2s;
     }
+
     &:not(:hover){
       transition: 0.2s;
     }
@@ -93,23 +95,28 @@ const NavLogo = styled.div`
   text-align: center;
   cursor: pointer;
   width: fit-content;
+
   img {
     width: 25px;
     height: 25px;
     vertical-align: middle;
     margin-right: 5px;
   }
+
   span {
     vertical-align: middle;
     font-size: 20px;
     font-weight: bold;
     margin-right: 5px;
   }
+
   @media screen and (max-width: 1000px) {
     margin-top: 4px;
+
     span {
       font-size: 17px;
     }
+
     img {
       width: 22px;
       height: 22px;
@@ -120,16 +127,19 @@ const UserMenu = styled.div`
   float: right;
   margin-right: 50px;
   padding-top: 5px;
+
   svg {
     vertical-align: middle;
     cursor: pointer;
     width: 20px;
     height: 20px;
     margin: 0px 5px 0px 5px;
+
     &:hover{
       opacity: 0.3;
       transition: 0.3s;
     }
+
     &:not(:hover){
       transition: 0.3s;
     }
@@ -141,19 +151,23 @@ const UserMenu = styled.div`
     margin: 0px 4px 0px 4px;
     font-size: 14px;
     font-weight: bold;
+
     &:hover{
       opacity: 0.3;
       transition: 0.3s;
     }
+
     &:not(:hover){
       transition: 0.3s;
     }
+
     &.none{
       cursor: default;
       &:hover{
         opacity: 1;
       }
     }
+
     @media screen and (max-width: 1000px) {
       display: none;
     }
@@ -162,19 +176,22 @@ const UserMenu = styled.div`
     margin-right: 10px;
   }
 `
-const NavBottom = styled.div`
+const NavMenu = styled.div`
   width: 100%;
-  text-align: center;
-  @media screen and (max-width: 1000px) {
+  padding-left: 40px;
+
+  @media screen and (max-width: 800px) {
     display: none;
   }
 `
 const NavItem = styled.div`
   display: inline-block;
-  padding: 15px;
+  margin-top: 5px;
+  margin-left: 15px;
+
   span {
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     display: inline-block;
     cursor: pointer;
 
@@ -192,72 +209,125 @@ const NavItem = styled.div`
   }
 `
 
+const NavDetail = styled.div`
+  display: flex;
+  width: 100%;
+  height: 350px;
+  background-color: #fff;
+  .productname {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  .photo {
+    color: green;
+  }
+  .hi{
+    font-weight: bold;
+  }
+`
+const ProductNameBox = styled.div`
+  display: inline-block;
+  width: 15%;
+  height: 100%;
+  padding: 70px 0px 0px 55px;
+
+`
+
+const ProductShowBox = styled.div`
+  display: inline-block;
+  width: 85%;
+  height: 100%;
+  transition: 1s;
+  .show {
+    margin-top: 50px;
+    visibility: visible;
+    margin-left: 50px;
+    transition: 1s;
+  }
+  .hide {
+    position: fixed;
+    margin-left: 0px;
+    visibility: hidden;
+  }
+`
 const Nav = (props) => {
+  const navigate = useNavigate();
   const wheel = props.wheel;
   const [open, setOpen] = useState(null);
+  const [show, setShow] = useState(null);
+
   const openSideBar = () => {
     setOpen(true);
   }
+
   const closeSideBar = () => {
     setOpen(false);
   }
-  const navigate = useNavigate();
+
   return (
-    <NavBox className={wheel == 'down' ? 'show' : null} onWheel={()=>{setOpen(false)}}>
-      <NavTop>
-        
-        <Col>
-          <MdMenu className="menu" onClick={openSideBar}/>
-          {
-            open == true
-            ? <>
-                <Overlay show="visable" onClick={closeSideBar}/>
-                <SideBar show="0px">
-                  <MdOutlineClose onClick={closeSideBar} />
-                </SideBar>
-              </>
-            : <>
-                <Overlay show="hidden"/>
-                <SideBar show="-300px">
-                  <MdOutlineClose/>
-                </SideBar>
-              </>
-
-          }
-        </Col>
-        <Col>
-          <NavLogo>
-            <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" /> 
-            <span>Studio Uno</span>
-          </NavLogo>
-        </Col>
-        
-        <Col>
-          <UserMenu>
-            <span>Login</span>
-            <span className="none">|</span>
-            <span>Join</span>
-            <MdSearch/>
-            <MdOutlineShoppingBag/>
-            <MdPersonOutline/>
-          </UserMenu>
-        </Col>
-        
-      </NavTop>
-
-      <NavBottom>
-
-        <NavItem>
-          <span>Product</span>
-        </NavItem>
-        <NavItem>
-          <span>More</span>
-        </NavItem>
-
-
-      </NavBottom>
-
-    </NavBox>
+    <>
+      <NavBox className={wheel == 'down' ? 'show' : null} onWheel={()=>{setOpen(false)}}>
+        <NavTop>
+          
+          <Col>
+            <MdMenu className="menu" onClick={openSideBar}/>
+            {
+              open == true
+              ? <>
+                  <Overlay show="visable" onClick={closeSideBar}/>
+                  <SideBar show="0px">
+                    <MdOutlineClose onClick={closeSideBar} />
+                  </SideBar>
+                </>
+              : <>
+                  <Overlay show="hidden"/>
+                  <SideBar show="-300px">
+                    <MdOutlineClose/>
+                  </SideBar>
+                </>
+            }
+            <NavMenu>
+              <NavItem>
+                <span>Product</span>
+              </NavItem>
+              <NavItem>
+                <span>More</span>
+              </NavItem>
+            </NavMenu>
+          </Col>
+          <Col>
+            <NavLogo>
+              <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" /> 
+              <span>Studio Uno</span>
+            </NavLogo>
+          </Col>
+          
+          <Col>
+            <UserMenu>
+              <span>Login</span>
+              <span className="none">|</span>
+              <span>Join</span>
+              <MdSearch/>
+              <MdOutlineShoppingBag/>
+              <MdPersonOutline/>
+            </UserMenu>
+          </Col>
+        </NavTop>
+      </NavBox>
+      <NavDetail>
+        <ProductNameBox>
+          <p className="productname" onMouseEnter={()=>{setShow('photo');}}>Photo</p>
+          <p className="productname" onMouseEnter={()=>{setShow('postcard');}}>Postcard</p>
+          {/* <p className="productname">Postcard</p>
+          <p className="productname">Objet</p>
+          <p className="productname">Wallpaper</p> */}
+        </ProductNameBox>
+        <ProductShowBox>
+          <div className={show == 'photo' ? 'show' : 'hide'}>{show}</div>
+          <div className={show == 'postcard' ? 'show' : 'hide'}>{show}</div>
+        </ProductShowBox>
+      </NavDetail>
+    </>
   )
 }
 
