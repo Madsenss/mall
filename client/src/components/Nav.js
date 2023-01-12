@@ -6,6 +6,10 @@ const Col = styled.div`
   width: 33.3333%;
 `
 const NavBox = styled.div`
+  &.show{
+    transform: translateY(-200px);
+    /* transition: ease-in-out; */
+  }
   z-index: 997;
   position: fixed;
   width: 100%;
@@ -23,6 +27,9 @@ const NavTop = styled.div`
   margin: 0px 0px 20px 0px;
   padding-top: 20px;
   display: flex;
+  .tt{
+    border: 1px solid black;
+  }
   .menu {
     width: 20px;
     height: 20px;
@@ -43,7 +50,6 @@ const NavTop = styled.div`
       75% { transform: rotate(-10deg) }
       100% { transform: rotate(0deg) }
     }
-
   }
 `
 const SideBar = styled.div`
@@ -186,7 +192,8 @@ const NavItem = styled.div`
   }
 `
 
-const Nav = () => {
+const Nav = (props) => {
+  const wheel = props.wheel;
   const [open, setOpen] = useState(null);
   const openSideBar = () => {
     setOpen(true);
@@ -196,8 +203,7 @@ const Nav = () => {
   }
   const navigate = useNavigate();
   return (
-    <NavBox>
-      
+    <NavBox className={wheel == 'down' ? 'show' : null} onWheel={()=>{setOpen(false)}}>
       <NavTop>
         
         <Col>
@@ -231,9 +237,9 @@ const Nav = () => {
             <span>Login</span>
             <span className="none">|</span>
             <span>Join</span>
-            <MdSearch />
-            <MdOutlineShoppingBag />
-            <MdPersonOutline />
+            <MdSearch/>
+            <MdOutlineShoppingBag/>
+            <MdPersonOutline/>
           </UserMenu>
         </Col>
         
@@ -242,20 +248,12 @@ const Nav = () => {
       <NavBottom>
 
         <NavItem>
-          <span>Apple</span>
+          <span>Product</span>
         </NavItem>
         <NavItem>
-          <span>Samsung</span>
+          <span>More</span>
         </NavItem>
-        <NavItem>
-          <span>Macsafe</span>
-        </NavItem>
-        <NavItem>
-          <span>Event</span>
-        </NavItem>
-        <NavItem>
-          <span>Community</span>
-        </NavItem>
+
 
       </NavBottom>
 

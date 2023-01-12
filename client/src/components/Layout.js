@@ -12,12 +12,24 @@ const Test = styled.div`
   /* transform: translateY(100%); */
   width: 100%;
   height: 800px;
-  background-color: #fff;
+  /* background-color: #fff; */
   text-align: center;
   /* background-color: blue; */
   /* background-color: transparent; */
   h1 {
-    padding-top: 500px;
+    /* padding-top: 500px; */
+  }
+`
+const Test2 = styled.div`
+  /* transform: translateY(100%); */
+  width: 100%;
+  height: 800px;
+  text-align: center;
+  background-color: #fff;
+  /* background-color: blue; */
+  /* background-color: transparent; */
+  h1 {
+    /* padding-top: 500px; */
   }
 `
 const Layout = () => {
@@ -25,8 +37,11 @@ const Layout = () => {
     <>
     <Back>
       <Test>
-        <h1>CONTENT AREA</h1>
+        {/* <h1>CONTENT AREA</h1> */}
       </Test>
+      <Test2>
+        <h1>CONTENT AREA</h1>
+      </Test2>
     </Back>
     </>
   )

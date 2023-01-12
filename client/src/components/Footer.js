@@ -12,7 +12,7 @@ const NavOuter = styled.div`
     transition: 0.45s;
   }
   &:hover .rlinebox {
-    border-right: 2px solid lightgray;
+    border-right: 1.5px solid lightgray;
   }
 `
 const FooterNav = styled.div`
@@ -65,7 +65,7 @@ const FooterInfo = styled.div`
   width: 100%;
   /* height: fit-content; */
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
   .infotext {
     font-size: 13px;
     line-height: 170%;
@@ -92,6 +92,7 @@ const NavLogo = styled.div`
   cursor: pointer;
   width: fit-content;
   margin-top: 10px;
+  padding-bottom: 20px;
   img {
     width: 25px;
     height: 25px;
