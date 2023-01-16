@@ -11,7 +11,7 @@ const Back = styled.div`
 const Test = styled.div`
   /* transform: translateY(100%); */
   width: 100%;
-  height: 800px;
+  height: 60vw;
   /* background-color: #fff; */
   text-align: center;
   /* background-color: blue; */
@@ -19,11 +19,12 @@ const Test = styled.div`
   h1 {
     /* padding-top: 500px; */
   }
+  cursor: pointer;
 `
 const Test2 = styled.div`
   /* transform: translateY(100%); */
   width: 100%;
-  height: 800px;
+  height: 1200px;
   text-align: center;
   background-color: #fff;
   /* background-color: blue; */
@@ -37,14 +38,14 @@ const Test2 = styled.div`
 const Layout = () => {
   return (
     <>
-    <Back>
+
       <Test>
         {/* <h1>CONTENT AREA</h1> */}
       </Test>
       <Test2>
         <h1>CONTENT AREA</h1>
       </Test2>
-    </Back>
+
     </>
   )
 }

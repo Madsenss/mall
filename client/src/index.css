@@ -12,7 +12,7 @@ h1, h2, h3, h4, h5, span, p {
 }
 
 .App{
-  background-image: url('/public/bg.jpg');
+  background-image: url('/public/1.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

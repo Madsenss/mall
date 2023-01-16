@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose } from "react-icons/md"
+import { MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose, MdOutlineArrowForwardIos } from "react-icons/md"
 import { useState } from "react";
 const Col = styled.div`
   width: 33.3333%;
@@ -28,13 +28,12 @@ const NavTop = styled.div`
   display: flex;
 
   .menu {
-    width: 20px;
-    height: 20px;
+    font-size: 22px;
     padding-top: 5px;
     margin-left : 20px;
     cursor : pointer;
 
-    @media screen and (min-width: 800px) {
+    @media screen and (min-width: 1050px) {
       display: none;
     }
 
@@ -110,7 +109,7 @@ const NavLogo = styled.div`
     margin-right: 5px;
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 500px) {
     margin-top: 4px;
 
     span {
@@ -126,14 +125,13 @@ const NavLogo = styled.div`
 const UserMenu = styled.div`
   float: right;
   margin-right: 15px;
-  padding-top: 5px;
+  padding-top: 0px;
 
   svg {
     vertical-align: middle;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
-    margin: 0px 5px 0px 5px;
+    font-size: 22px;
+    margin-left: 13px;
 
     &:hover{
       opacity: 0.3;
@@ -143,12 +141,16 @@ const UserMenu = styled.div`
     &:not(:hover){
       transition: 0.3s;
     }
+    @media screen and (max-width: 800px) {
+      font-size: 21px;
+      margin: 5px 0px 0px 10px;
+    }
   }
 
   span {
     vertical-align: middle;
     cursor: pointer;
-    margin: 0px 4px 0px 4px;
+    margin: 0px 7px 0px 5px;
     font-size: 14px;
     font-weight: bold;
 
@@ -208,18 +210,21 @@ const NavItem = styled.div`
       transform: scaleX(1);
     }
   }
+  @media screen and (max-width: 1050px) {
+    display: none;
+  }
 `
 
 const NavDetail = styled.div`
   position: relative;
   z-index: 1;
-  margin-top: -45px;
+  margin-top: -50px;
   transition: 0.7s;
   transform: translateY(${props => props.y ? '0px' : '-500px'});
-  min-height: 250px;
+  min-height: 300px;
   display: flex;
   width: 100%;
-  height: 22vw;
+  height: 21.75vw;
   max-height: 21.75vw;
 
   background: linear-gradient(
@@ -246,8 +251,8 @@ const NavDetail = styled.div`
   );
     
   .productname {
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 16px;
+    margin-bottom: 1vw;
     font-family: NanumMyeongjo;
     width: fit-content;
     cursor: pointer;
@@ -266,23 +271,48 @@ const NavDetail = styled.div`
       transform: scaleX(1);
       transform-origin:  0% 50%;
     }
+    @media screen and (max-width: 1400px) {
+      font-size: 12px;
+    }
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1200px) {
+    min-height: 280px;
+  }
+  @media screen and (max-width: 1050px) {
     display: none;
   }
 `
 const ProductNameBox = styled.div`
-
   display: inline-block;
-  width: 10%;
+  width: 6%;
   height: 100%;
-  padding: 70px 0px 0px 30px; 
+  padding: 85px 0px 0px 30px; 
+
+  svg {
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 40px;
+    &:hover {
+      opacity: 1;
+      transition: 0.4s;
+      transform: rotate(-90deg);
+    }
+    &:not(:hover) {
+      transition: 0.4s;
+    }
+    @media screen and (max-width: 1400px) {
+      margin-left: 5px;
+      font-size: 30px;
+    }
+  }
 `
 
 const ProductShowBox = styled.div`
   display: inline-block;
   padding: 55px 10px 10px 10px;
-  width: 90%;
+  width: 94%;
   height: 100%;
   .show {
     width: 100%;
@@ -343,7 +373,7 @@ const Nav = (props) => {
   const navigate = useNavigate();
   const wheel = props.wheel;
   const [open, setOpen] = useState(null);
-  const [show, setShow] = useState(null);
+  const [show, setShow] = useState(false);
   const [detailOpen, setDetailOpen] = useState(null);
   const [active, setActive] = useState(null);
 
@@ -382,7 +412,7 @@ const Nav = (props) => {
                 <span onMouseEnter={() => { setDetailOpen(true) }}>PRODUCT</span>
               </NavItem>
               <NavItem>
-                <span>MORE</span>
+                <span style={{marginLeft : '0.7vw'}}>MORE</span>
               </NavItem>
             </NavMenu>
           </Col>
@@ -406,8 +436,11 @@ const Nav = (props) => {
         </NavTop>
         <NavDetail y={detailOpen} onMouseLeave={() => { setDetailOpen(false); setShow(''); }}>
         <ProductNameBox>
+          <p className="productname" onMouseEnter={() => { setShow('objet'); }}>Objet</p>
           <p className="productname" onMouseEnter={() => { setShow('photo'); setActive(true); }} atv={active}>Photo</p>
           <p className="productname" onMouseEnter={() => { setShow('postcard'); }}>Postcard</p>
+          <p className="productname" onMouseEnter={() => { setShow('wallpaper'); }}>Wallpaper</p>
+          <MdOutlineArrowForwardIos onClick={() => { setDetailOpen(false); }} />
         </ProductNameBox>
         <ProductShowBox>
           <div className={show == 'photo' ? 'show' : 'hide'}>
