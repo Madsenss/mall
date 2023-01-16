@@ -11,7 +11,7 @@ const IconBox = styled.div`
   width: 40px;
   height: 50px;
   text-align: center;
-  background-color: lightgray;
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   visibility: hidden;
   transition: 0.5s;

@@ -8,14 +8,12 @@ const Col = styled.div`
 const NavBox = styled.div`
   &.show{
     transform: translateY(-200px);
-    /* transition: ease-in-out; */
   }
   z-index: 997;
   position: fixed;
   width: 100%;
   height: auto;
   &:hover{
-    /* background-color: #eee; */
     transition: 0.5s;
   }
   &:not(:hover){
@@ -23,6 +21,8 @@ const NavBox = styled.div`
   }
 `
 const NavTop = styled.div`
+  position: relative;
+  z-index: 996;
   width: 100%;
   padding-top: 20px;
   display: flex;
@@ -125,7 +125,7 @@ const NavLogo = styled.div`
 `
 const UserMenu = styled.div`
   float: right;
-  margin-right: 50px;
+  margin-right: 15px;
   padding-top: 5px;
 
   svg {
@@ -168,17 +168,18 @@ const UserMenu = styled.div`
       }
     }
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 800px) {
       display: none;
     }
   }
-  @media screen and (max-width: 1000px) {
+  /* @media screen and (max-width: 1000px) {
     margin-right: 10px;
-  }
+  } */
 `
+
 const NavMenu = styled.div`
   width: 100%;
-  padding-left: 40px;
+  padding-left: 15px;
 
   @media screen and (max-width: 800px) {
     display: none;
@@ -191,7 +192,7 @@ const NavItem = styled.div`
 
   span {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
     display: inline-block;
     cursor: pointer;
 
@@ -210,51 +211,141 @@ const NavItem = styled.div`
 `
 
 const NavDetail = styled.div`
+  position: relative;
+  z-index: 1;
+  margin-top: -45px;
+  transition: 0.7s;
+  transform: translateY(${props => props.y ? '0px' : '-500px'});
+  min-height: 250px;
   display: flex;
   width: 100%;
-  height: 350px;
-  background-color: #fff;
+  height: 22vw;
+  max-height: 21.75vw;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 10%,
+    rgba(255, 255, 255, 0.975) 15%,
+    rgba(255, 255, 255, 0.9) 20%,
+    rgba(255, 255, 255, 0.875) 25%,
+    rgba(255, 255, 255, 0.85) 30%,
+    rgba(255, 255, 255, 0.825) 35%,
+    rgba(255, 255, 255, 0.8) 40%,
+    rgba(255, 255, 255, 0.775) 45%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.725) 55%,
+    rgba(255, 255, 255, 0.7) 60%,
+    rgba(255, 255, 255, 0.675) 65%,
+    rgba(255, 255, 255, 0.65) 70%,
+    rgba(255, 255, 255, 0.625) 75%,
+    rgba(255, 255, 255, 0.6) 80%,
+    rgba(255, 255, 255, 0.575) 85%,
+    rgba(255, 255, 255, 0.55) 90%,
+    rgba(255, 255, 255, 0.525) 95%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+    
   .productname {
     font-size: 14px;
     margin-bottom: 15px;
+    font-family: NanumMyeongjo;
+    width: fit-content;
+    cursor: pointer;
+    &:hover {
+      font-weight: bold;
+    }
+    &:after {
+      display:block;
+      content: '';
+      border-bottom: solid 2px black;  
+      transform: scaleX(0);  
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:hover:after {
+      transform: scaleX(1);
+      transform-origin:  0% 50%;
+    }
   }
-  .photo {
-    color: green;
-  }
-  .hi{
-    font-weight: bold;
+  @media screen and (max-width: 800px) {
+    display: none;
   }
 `
 const ProductNameBox = styled.div`
-  display: inline-block;
-  width: 15%;
-  height: 100%;
-  padding: 70px 0px 0px 55px;
 
+  display: inline-block;
+  width: 10%;
+  height: 100%;
+  padding: 70px 0px 0px 30px; 
 `
 
 const ProductShowBox = styled.div`
   display: inline-block;
-  width: 85%;
+  padding: 55px 10px 10px 10px;
+  width: 90%;
   height: 100%;
-  transition: 1s;
   .show {
-    margin-top: 50px;
+    width: 100%;
+    height: 100%;
     visibility: visible;
-    margin-left: 50px;
-    transition: 1s;
   }
   .hide {
     position: fixed;
     margin-left: 0px;
     visibility: hidden;
   }
+  .out {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .photoitem {
+    padding: 10px;
+    position: absolute;
+    height: 18vw;
+    max-height: 18vw;
+    width: 20%;
+    transition: 1.5s;
+  }
+  .x1 {
+    transform: translateX(100%);
+  }
+  .x2 {
+    transform: translateX(200%);
+  }
+  .x3 {
+    transform: translateX(300%);
+  }
+  .x4 {
+    transform: translateX(400%);
+  }
+`
+const Image = styled.div`
+    width: 100%;
+    height: 100%;
+    background-image: url(${props => props.url});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 0px;
+    opacity: 0.8;
+    &:hover {
+      scale: 1.03;
+      transition: 0.3s;
+      opacity: 1;
+    }
+    &:not(:hover) {
+      transition: 0.3s;
+    }
 `
 const Nav = (props) => {
   const navigate = useNavigate();
   const wheel = props.wheel;
   const [open, setOpen] = useState(null);
   const [show, setShow] = useState(null);
+  const [detailOpen, setDetailOpen] = useState(null);
+  const [active, setActive] = useState(null);
 
   const openSideBar = () => {
     setOpen(true);
@@ -266,67 +357,102 @@ const Nav = (props) => {
 
   return (
     <>
-      <NavBox className={wheel == 'down' ? 'show' : null} onWheel={()=>{setOpen(false)}}>
+      <NavBox className={wheel == 'down' ? 'show' : null} onWheel={() => { setOpen(false); }}>
         <NavTop>
-          
+
           <Col>
-            <MdMenu className="menu" onClick={openSideBar}/>
+            <MdMenu className="menu" onClick={openSideBar} />
             {
               open == true
-              ? <>
-                  <Overlay show="visable" onClick={closeSideBar}/>
+                ? <>
+                  <Overlay show="visable" onClick={closeSideBar} />
                   <SideBar show="0px">
                     <MdOutlineClose onClick={closeSideBar} />
                   </SideBar>
                 </>
-              : <>
-                  <Overlay show="hidden"/>
+                : <>
+                  <Overlay show="hidden" />
                   <SideBar show="-300px">
-                    <MdOutlineClose/>
+                    <MdOutlineClose />
                   </SideBar>
                 </>
             }
             <NavMenu>
               <NavItem>
-                <span>Product</span>
+                <span onMouseEnter={() => { setDetailOpen(true) }}>PRODUCT</span>
               </NavItem>
               <NavItem>
-                <span>More</span>
+                <span>MORE</span>
               </NavItem>
             </NavMenu>
           </Col>
           <Col>
             <NavLogo>
-              <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" /> 
+              <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" />
               <span>Studio Uno</span>
             </NavLogo>
           </Col>
-          
+
           <Col>
             <UserMenu>
               <span>Login</span>
               <span className="none">|</span>
               <span>Join</span>
-              <MdSearch/>
-              <MdOutlineShoppingBag/>
-              <MdPersonOutline/>
+              <MdSearch />
+              <MdOutlineShoppingBag />
+              <MdPersonOutline />
             </UserMenu>
           </Col>
         </NavTop>
-      </NavBox>
-      <NavDetail>
+        <NavDetail y={detailOpen} onMouseLeave={() => { setDetailOpen(false); setShow(''); }}>
         <ProductNameBox>
-          <p className="productname" onMouseEnter={()=>{setShow('photo');}}>Photo</p>
-          <p className="productname" onMouseEnter={()=>{setShow('postcard');}}>Postcard</p>
-          {/* <p className="productname">Postcard</p>
-          <p className="productname">Objet</p>
-          <p className="productname">Wallpaper</p> */}
+          <p className="productname" onMouseEnter={() => { setShow('photo'); setActive(true); }} atv={active}>Photo</p>
+          <p className="productname" onMouseEnter={() => { setShow('postcard'); }}>Postcard</p>
         </ProductNameBox>
         <ProductShowBox>
-          <div className={show == 'photo' ? 'show' : 'hide'}>{show}</div>
-          <div className={show == 'postcard' ? 'show' : 'hide'}>{show}</div>
+          <div className={show == 'photo' ? 'show' : 'hide'}>
+            <div className="out">
+              <div className="photoitem">
+                <Image url="3.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'photo' ? ' x1' : ''}`}>
+                <Image url="4.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'photo' ? ' x2' : ''}`}>
+                <Image url="1.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'photo' ? ' x3' : ''}`}>
+                <Image url="2.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'photo' ? ' x4' : ''}`}>
+                <Image url="5.jpg" />
+              </div>
+            </div>
+          </div>
+
+          <div className={show == 'postcard' ? 'show' : 'hide'}>
+            <div className="out">
+              <div className="photoitem">
+                <Image url="22.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'postcard' ? ' x1' : ''}`}>
+                <Image url="11.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'postcard' ? ' x2' : ''}`}>
+                <Image url="33.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'postcard' ? ' x3' : ''}`}>
+                <Image url="44.jpg" />
+              </div>
+              <div className={'photoitem' + `${show == 'postcard' ? ' x4' : ''}`}>
+                <Image url="55.jpg" />
+              </div>
+            </div>
+          </div>
+
         </ProductShowBox>
       </NavDetail>
+      </NavBox>
     </>
   )
 }

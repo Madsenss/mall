@@ -3,21 +3,19 @@ import styled from "styled-components";
 const NavOuter = styled.div`
   width: 100%;
   padding: 1px;
+  
   &:hover {
-    background-color: white;
-    transition: 0.45s
-    
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: 0.45s;
   }
   &:not(:hover) {
     transition: 0.45s;
   }
-  &:hover .rlinebox {
-    border-right: 1.5px solid lightgray;
-  }
+
 `
 const FooterNav = styled.div`
   width: 100%;
-  margin: 30px 0px 30px 0px;
+  margin: 25px 0px 25px 0px;
 
   .col {
     display: inline-block;
@@ -25,7 +23,26 @@ const FooterNav = styled.div`
   }
   .rlinebox {
     width: 100%;
-    height: 300px;
+    height: 250px;
+    &:hover {
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1) 10%,
+        rgba(255, 255, 255, 0.15) 20%,
+        rgba(255, 255, 255, 0.2) 30%,
+        rgba(255, 255, 255, 0.25) 40%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.35) 60%,
+        rgba(255, 255, 255, 0.4) 70%,
+        rgba(255, 255, 255, 0.45) 80%,
+        rgba(255, 255, 255, 0.5) 90%,
+        rgba(255, 255, 255, 0.55) 100%
+      );
+
+      border-right: 1.5px solid rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 40px;
+    }
   }
   h3 {
     font-size: 18px;
@@ -36,12 +53,24 @@ const FooterNav = styled.div`
     cursor: pointer;
     display: block;
     width: fit-content;
-    margin: 0px 0px 20px 32px;
+    font-family: NanumMyeongjo;
+    margin: 0px 0px 20px 20px;
     &:hover {
       font-weight: bold;
     }
+    &:after {
+        display:block;
+        content: '';
+        border-bottom: solid 2px black;  
+        transform: scaleX(0);  
+        transition: transform 0.2s ease-in-out;
+     }
+    &:hover:after {
+      transform: scaleX(1);
+      transform-origin:  0% 50%;
+    }
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 800px) {
     margin: 15px 0px 15px 0px;
     .rlinebox {
       height: 150px;
@@ -67,10 +96,12 @@ const FooterInfo = styled.div`
   text-align: center;
   margin-top: 20px;
   .infotext {
+    font-family: NanumMyeongjo;
     font-size: 13px;
     line-height: 170%;
   }
   .infotextedge {
+    font-family: NanumMyeongjo;
     cursor: pointer;
     font-size: 13px;
     line-height: 170%;
@@ -127,7 +158,7 @@ const Footer = () => {
             </div> 
           </div>
           <div className="col">
-            <div className="rlinebox" style={{ borderRight: 'none' }}>
+            <div className="rlinebox">
               <h3>More View</h3>
               <span>Gallery</span>
               <span>Instagram</span>
