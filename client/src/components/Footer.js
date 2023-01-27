@@ -81,11 +81,10 @@ const FooterNav = styled.div`
       font-size: 14px;
     }
     span {
-      display: block;
-      width: auto;
       text-align: center;
+      margin: auto;
+      padding: 10px 0px 10px 0px;
       font-size: 12px;
-      margin: 0px 0px 20px 0px;
     }
   }
 `

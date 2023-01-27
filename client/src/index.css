@@ -10,13 +10,3 @@ div {
 h1, h2, h3, h4, h5, span, p {
   margin: 0;
 }
-
-.App{
-  background-image: url('/public/1.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  width: 100%;
-  height: max-content;
-}

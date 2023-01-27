@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose, MdOutlineArrowForwardIos } from "react-icons/md"
+import {
+  MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose, MdOutlineArrowForwardIos, MdOutlineArrowRight
+} from "react-icons/md"
 import { useState } from "react";
 const Col = styled.div`
   width: 33.3333%;
@@ -33,7 +35,7 @@ const NavTop = styled.div`
     margin-left : 20px;
     cursor : pointer;
 
-    @media screen and (min-width: 1050px) {
+    @media screen and (min-width: 1051px) {
       display: none;
     }
 
@@ -51,42 +53,8 @@ const NavTop = styled.div`
     }
   }
 `
-const SideBar = styled.div`
-  width: 300px;
-  height: 101%;
-  margin-top: -50px;
-  background-color: #fff;
-  position: fixed;
-  z-index: 999;
-  transform: translateX(${props => props.show});
-  transition: 0.5s;
-  
-  svg {
-    width: 25px;
-    height: 25px;
-    margin: 10px 10px 0px 0px;
-    float: right;
-    cursor: pointer;
 
-    &:hover{
-      opacity: 0.3;
-      transition: 0.2s;
-    }
 
-    &:not(:hover){
-      transition: 0.2s;
-    }
-  }
-`
-const Overlay = styled.div`
-  margin-top: -50px;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 998;
-  visibility: ${props => props.show};
-`
 
 const NavLogo = styled.div`
   display: table;
@@ -369,6 +337,116 @@ const Image = styled.div`
       transition: 0.3s;
     }
 `
+const SideBar = styled.div`
+  width: 300px;
+  height: 100.2%;
+  margin-top: -51px;
+  background-color: #fff;
+  position: fixed;
+  z-index: 999;
+  transform: translateX(${props => props.show});
+  transition: 0.5s;
+  .close {
+    width: 25px;
+    height: 25px;
+    margin: 10px 10px 0px 0px;
+    float: right;
+    cursor: pointer;
+
+    &:hover{
+      opacity: 0.3;
+      transition: 0.2s;
+    }
+
+    &:not(:hover){
+      transition: 0.2s;
+    }
+  }
+`
+const Overlay = styled.div`
+  margin-top: -50px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 998;
+  visibility: ${props => props.show};
+`
+
+const BottomLogo = styled.div`
+  position: fixed;
+  bottom: 2%;
+  left: 25%;
+  text-align: center;
+  display: block;
+  img {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+
+  span {
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  @media screen and (max-width : 800px) {
+    display: block;
+  }
+`
+const SideMenuBox = styled.div`
+  width: 100%;
+  margin-top: 65px;
+`
+const Ul = styled.ul`
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+`
+const MainLi = styled.li`
+  padding: 20px 0px 20px 20px;
+  margin-bottom: 3px;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 1.5px solid #aaa;
+  border-top: 1.5px solid #aaa;
+
+  svg {
+    font-size: 20px;
+    float: right;
+    margin-right: 10px;
+    transition: 0.3s;
+    &.active {
+      transform: rotate(90deg);
+    }
+    &.none {
+      transform: rotate(0deg);
+    }
+  }
+
+`
+const SubLi = styled.li`
+
+  font-weight: bold;
+  width: 100%;
+  transition: 0.3s;
+  opacity: 0;
+  cursor: pointer;
+  &.show {
+    font-family: NanumMyeongjo;
+    padding: 15px 0px 15px 35px;
+    max-width: 265px;
+    visibility: visible;
+    opacity: 1;
+  }
+  &.hide {
+    visibility: hidden;
+    height: 0px;
+    opacity: 0;
+  }
+`
+
 const Nav = (props) => {
   const navigate = useNavigate();
   const wheel = props.wheel;
@@ -376,6 +454,7 @@ const Nav = (props) => {
   const [show, setShow] = useState(false);
   const [detailOpen, setDetailOpen] = useState(null);
   const [active, setActive] = useState(null);
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
   const openSideBar = () => {
     setOpen(true);
@@ -395,24 +474,44 @@ const Nav = (props) => {
             {
               open == true
                 ? <>
-                  <Overlay show="visable" onClick={closeSideBar} />
-                  <SideBar show="0px">
-                    <MdOutlineClose onClick={closeSideBar} />
-                  </SideBar>
-                </>
+                    <Overlay show="visable" onClick={()=>{closeSideBar(); setSideMenuOpen(!sideMenuOpen);}} />
+                    <SideBar show="0px">
+                      <MdOutlineClose className="close" onClick={closeSideBar} />
+                      <SideMenuBox>
+                        <Ul>
+                          <MainLi onClick={()=>{closeSideBar(); }}>ABOUT</MainLi>
+                          <MainLi onClick={()=>{setSideMenuOpen(!sideMenuOpen)}}>
+                            PRODUCT
+                            <MdOutlineArrowForwardIos className={sideMenuOpen ? "active" : "none"}/>
+                          </MainLi>
+                          <Ul>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Objet</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Photo</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Postcard</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Wallpaper</SubLi>
+                          </Ul>
+                          <MainLi onClick={()=>{closeSideBar();}}>NOTICE</MainLi>
+                          <MainLi onClick={()=>{closeSideBar();}}>FAQ</MainLi>
+                          <MainLi onClick={()=>{closeSideBar();}}>REVIEW</MainLi>
+                        </Ul>
+                      </SideMenuBox>
+                      <BottomLogo>
+                        <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" />
+                        <span>Studio Uno</span>
+                      </BottomLogo>
+                    </SideBar>
+                  </>
                 : <>
-                  <Overlay show="hidden" />
-                  <SideBar show="-300px">
-                    <MdOutlineClose />
-                  </SideBar>
-                </>
+                    <Overlay show="hidden" />
+                    <SideBar show="-300px" />
+                  </>
             }
             <NavMenu>
               <NavItem>
                 <span onMouseEnter={() => { setDetailOpen(true) }}>PRODUCT</span>
               </NavItem>
               <NavItem>
-                <span style={{marginLeft : '0.7vw'}}>MORE</span>
+                <span style={{marginLeft : '0.7vw'}}>ABOUT</span>
               </NavItem>
             </NavMenu>
           </Col>

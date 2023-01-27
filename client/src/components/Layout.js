@@ -1,24 +1,10 @@
+import { useRef } from "react";
 import styled from "styled-components";
-const Back = styled.div`
-  background-image: url('bg.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
+
+const Transparent = styled.div`
   width: 100%;
-  height: auto;
-`
-const Test = styled.div`
-  /* transform: translateY(100%); */
-  width: 100%;
-  height: 60vw;
-  /* background-color: #fff; */
-  text-align: center;
-  /* background-color: blue; */
-  /* background-color: transparent; */
-  h1 {
-    /* padding-top: 500px; */
-  }
+  height: 100vh;
+  border: 2px solid red;
   cursor: pointer;
 `
 const Test2 = styled.div`
@@ -36,14 +22,13 @@ const Test2 = styled.div`
 
 
 const Layout = () => {
+  const content = useRef();
+  const teleport = () => content.current.scrollIntoView({ behavior: 'smooth' });
   return (
     <>
-
-      <Test>
-        {/* <h1>CONTENT AREA</h1> */}
-      </Test>
-      <Test2>
-        <h1>CONTENT AREA</h1>
+      <Transparent onClick={teleport}/> 
+      <Test2 ref={content}>
+        <h1>CONTENT AREA33</h1>
       </Test2>
 
     </>
