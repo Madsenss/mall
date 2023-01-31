@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const NavOuter = styled.div`
@@ -138,6 +139,8 @@ const NavLogo = styled.div`
  
 `
 const Footer = () => {
+  const path = window.location.pathname;
+  const navigate = useNavigate();
   return (
     <>
       <NavOuter>     
@@ -145,7 +148,7 @@ const Footer = () => {
           <div className="col">
             <div className="rlinebox">
               <h3>Information</h3>
-              <span>About</span>
+              <span onClick={()=>{navigate('/about'); window.scrollTo({top : 0, behavior : 'smooth'});}}>About</span>
               <span>Product</span>
             </div>      
           </div>
@@ -166,13 +169,13 @@ const Footer = () => {
         </FooterNav>
       </NavOuter>
 
-      <FooterInfo>
+      <FooterInfo style={{color : path == '/about' ? 'white' : null}}>
         <span className="infotext">Studio Uno | 김원 | 경기 안양시 동안구 시민대로 272 평촌동양트레벨파크 15층 Studio Uno </span><br/>
         <span className="infotext">031-123-4567 | leobinuss@gmail.com | 123-45-67890 | 2023-경기안양-2345</span><br/>
         <span className="infotext">© 2023 Studio Uno. All rights reserved.</span><br/>
         <span className="infotextedge">개인정보 취급 방침 | </span>
         <span className="infotextedge">이용 약관</span><br/>
-        <NavLogo>
+        <NavLogo style={{color : 'black'}}>
           <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" /> 
           <span>Studio Uno</span>
         </NavLogo>

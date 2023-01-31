@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   MdSearch, MdOutlineShoppingBag, MdPersonOutline, MdMenu, MdOutlineClose, MdOutlineArrowForwardIos, MdOutlineArrowRight
 } from "react-icons/md"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Col = styled.div`
   width: 33.3333%;
 `
@@ -455,7 +455,6 @@ const Nav = (props) => {
   const [detailOpen, setDetailOpen] = useState(null);
   const [active, setActive] = useState(null);
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-
   const openSideBar = () => {
     setOpen(true);
   }
@@ -463,7 +462,11 @@ const Nav = (props) => {
   const closeSideBar = () => {
     setOpen(false);
   }
-
+  useEffect(()=>{
+    if(wheel && wheel == 'down') {
+      setDetailOpen(false);
+    }
+  },[wheel]);
   return (
     <>
       <NavBox className={wheel == 'down' ? 'show' : null} onWheel={() => { setOpen(false); }}>
@@ -479,7 +482,7 @@ const Nav = (props) => {
                       <MdOutlineClose className="close" onClick={closeSideBar} />
                       <SideMenuBox>
                         <Ul>
-                          <MainLi onClick={()=>{closeSideBar(); }}>ABOUT</MainLi>
+                          <MainLi onClick={()=>{closeSideBar(); navigate('/about'); window.scrollTo({top : 0, behavior : 'smooth'})}}>ABOUT</MainLi>
                           <MainLi onClick={()=>{setSideMenuOpen(!sideMenuOpen)}}>
                             PRODUCT
                             <MdOutlineArrowForwardIos className={sideMenuOpen ? "active" : "none"}/>
@@ -511,12 +514,12 @@ const Nav = (props) => {
                 <span onMouseEnter={() => { setDetailOpen(true) }}>PRODUCT</span>
               </NavItem>
               <NavItem>
-                <span style={{marginLeft : '0.7vw'}}>ABOUT</span>
+                <span style={{marginLeft : '0.7vw'}} onClick={()=>{navigate('/about'); window.scrollTo({top : 0, behavior : 'smooth'})}}>ABOUT</span>
               </NavItem>
             </NavMenu>
           </Col>
           <Col>
-            <NavLogo>
+            <NavLogo onClick={()=>{navigate('/'); window.scrollTo({top : 0, behavior : 'smooth'})}}>
               <img src={process.env.PUBLIC_URL + '/logop2.png'} alt="logo" />
               <span>Studio Uno</span>
             </NavLogo>

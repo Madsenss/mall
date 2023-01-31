@@ -1,10 +1,9 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 const Transparent = styled.div`
   width: 100%;
   height: 100vh;
-  border: 2px solid red;
   cursor: pointer;
 `
 const Test2 = styled.div`
@@ -24,9 +23,24 @@ const Test2 = styled.div`
 const Layout = () => {
   const content = useRef();
   const teleport = () => content.current.scrollIntoView({ behavior: 'smooth' });
+  // console.log(wheel);
+  // console.log(window.scrollY);
+  // useEffect(()=>{
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   }
+  // }, []);
+  // const handleScroll = () => {
+  //   if( window.scrollY > 0) {
+  //     teleport();
+  //   }
+  // };
   return (
     <>
-      <Transparent onClick={teleport}/> 
+      {/* <Transparent onClick={()=>{
+        teleport();
+      }}/>  */}
       <Test2 ref={content}>
         <h1>CONTENT AREA33</h1>
       </Test2>
