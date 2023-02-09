@@ -4,19 +4,11 @@ import styled from "styled-components";
 const NavOuter = styled.div`
   width: 100%;
   padding: 1px;
-  
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transition: 0.45s;
-  }
-  &:not(:hover) {
-    transition: 0.45s;
-  }
-
 `
 const FooterNav = styled.div`
   width: 100%;
   margin: 25px 0px 25px 0px;
+  text-align: center;
 
   .col {
     display: inline-block;
@@ -24,38 +16,21 @@ const FooterNav = styled.div`
   }
   .rlinebox {
     width: 100%;
-    height: 250px;
-    &:hover {
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0.1) 10%,
-        rgba(255, 255, 255, 0.15) 20%,
-        rgba(255, 255, 255, 0.2) 30%,
-        rgba(255, 255, 255, 0.25) 40%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0.35) 60%,
-        rgba(255, 255, 255, 0.4) 70%,
-        rgba(255, 255, 255, 0.45) 80%,
-        rgba(255, 255, 255, 0.5) 90%,
-        rgba(255, 255, 255, 0.55) 100%
-      );
-
-      border-right: 1.5px solid rgba(0, 0, 0, 0.15);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: 40px;
-    }
+    height: 200px;
   }
   h3 {
+    font-family: NanumMyeongjo;
     font-size: 18px;
     font-weight: 600;
-    margin: 0px 0px 40px 20px;
+    margin-bottom: 40px;
   }
   span {
     cursor: pointer;
     display: block;
     width: fit-content;
     font-family: NanumMyeongjo;
-    margin: 0px 0px 20px 20px;
+    margin: auto;
+    margin-bottom: 20px;
     &:hover {
       font-weight: bold;
     }
@@ -72,19 +47,14 @@ const FooterNav = styled.div`
     }
   }
   @media screen and (max-width: 800px) {
-    margin: 15px 0px 15px 0px;
     .rlinebox {
-      height: 150px;
+      height: 120px;
     }
     h3 {
-      margin: 0px 0px 20px 0px;
-      text-align: center;
+      margin-bottom: 20px;
       font-size: 14px;
     }
     span {
-      text-align: center;
-      margin: auto;
-      padding: 10px 0px 10px 0px;
       font-size: 12px;
     }
   }
@@ -109,10 +79,11 @@ const FooterInfo = styled.div`
       font-weight: bold;
     }
   }
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 800px) {
     margin-top: 15px;
-    .infotext {
+    .infotext, .infotextedge {
       line-height: 100%;
+      font-size: 10px;
     }
   }
 `
@@ -144,7 +115,7 @@ const Footer = () => {
   return (
     <>
       <NavOuter>     
-        <FooterNav>
+        <FooterNav style={{color : path == '/about' ? '#eee' : null}}>
           <div className="col">
             <div className="rlinebox">
               <h3>Information</h3>
@@ -160,6 +131,7 @@ const Footer = () => {
             </div> 
           </div>
           <div className="col">
+            {/* <div className="rlinebox" style={{borderRight : 'none'}}> */}
             <div className="rlinebox">
               <h3>More View</h3>
               <span>Gallery</span>
@@ -169,7 +141,7 @@ const Footer = () => {
         </FooterNav>
       </NavOuter>
 
-      <FooterInfo style={{color : path == '/about' ? 'white' : null}}>
+      <FooterInfo style={{color : path == '/about' ? '#eee' : null}}>
         <span className="infotext">Studio Uno | 김원 | 경기 안양시 동안구 시민대로 272 평촌동양트레벨파크 15층 Studio Uno </span><br/>
         <span className="infotext">031-123-4567 | leobinuss@gmail.com | 123-45-67890 | 2023-경기안양-2345</span><br/>
         <span className="infotext">© 2023 Studio Uno. All rights reserved.</span><br/>

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Nav from "./components/Nav.js";
-import Layout from "./components/Layout.js";
+import Posts from "./components/Posts.js";
 import Footer from "./components/Footer.js";
 import ScrollUp from "./components/ScrollUp.js";
 import About from "./components/about.js"
@@ -22,6 +22,8 @@ const Bg = styled.div`
 `
 
 const Transparent = styled.div`
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100vh;
   cursor: pointer;
@@ -63,7 +65,7 @@ function App() {
                 setWheel('down');
               }}/>
               <div ref={content} id="content"/>
-              <Layout/>
+              <Posts/>
               <Footer/>
               <ScrollUp wheel={wheel}/>
             </Bg>

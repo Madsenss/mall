@@ -38,19 +38,6 @@ const NavTop = styled.div`
     @media screen and (min-width: 1051px) {
       display: none;
     }
-
-    &:hover {
-      animation-name: shake;
-      animation-duration: 0.7s;
-    }
-
-    @keyframes shake {
-      0% { transform: rotate(0deg) }
-      25% { transform: rotate(-10deg) }
-      50% { transform: rotate(10deg) }
-      75% { transform: rotate(-10deg) }
-      100% { transform: rotate(0deg) }
-    }
   }
 `
 
@@ -186,9 +173,8 @@ const NavItem = styled.div`
 const NavDetail = styled.div`
   position: relative;
   z-index: 1;
-  margin-top: -50px;
+  margin-top: ${props => props.y ? '-50px' : '-550px'};
   transition: 0.7s;
-  transform: translateY(${props => props.y ? '0px' : '-500px'});
   min-height: 300px;
   display: flex;
   width: 100%;
@@ -326,12 +312,11 @@ const Image = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    box-shadow: 2px 2px 2px 0px;
-    opacity: 0.8;
+    box-shadow: 4px 4px 6px 0px rgb(180, 180, 180);
+    border-radius: 2.5%;
     &:hover {
       scale: 1.03;
       transition: 0.3s;
-      opacity: 1;
     }
     &:not(:hover) {
       transition: 0.3s;
@@ -409,8 +394,8 @@ const MainLi = styled.li`
   margin-bottom: 3px;
   font-weight: bold;
   cursor: pointer;
-  border-bottom: 1.5px solid #aaa;
-  border-top: 1.5px solid #aaa;
+  border-bottom: 0.8px solid lightgray;
+  border-top: 0.8px solid lightgray;
 
   svg {
     font-size: 20px;
@@ -430,13 +415,13 @@ const SubLi = styled.li`
 
   font-weight: bold;
   width: 100%;
-  transition: 0.3s;
+  transition: 0.5s;
   opacity: 0;
   cursor: pointer;
   &.show {
     font-family: NanumMyeongjo;
-    padding: 15px 0px 15px 35px;
-    max-width: 265px;
+    padding: 15px 0px 15px 30px;
+    max-width: 270px;
     visibility: visible;
     opacity: 1;
   }
@@ -488,10 +473,10 @@ const Nav = (props) => {
                             <MdOutlineArrowForwardIos className={sideMenuOpen ? "active" : "none"}/>
                           </MainLi>
                           <Ul>
-                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Objet</SubLi>
-                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Photo</SubLi>
-                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Postcard</SubLi>
-                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>Wallpaper</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>objet</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>photo</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>postcard</SubLi>
+                            <SubLi className={sideMenuOpen ? "show" : "hide"} onClick={()=>{closeSideBar();}}>wallpaper</SubLi>
                           </Ul>
                           <MainLi onClick={()=>{closeSideBar();}}>NOTICE</MainLi>
                           <MainLi onClick={()=>{closeSideBar();}}>FAQ</MainLi>

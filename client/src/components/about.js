@@ -61,92 +61,6 @@ const ContactBox = styled.div`
     max-width: 80%;
   }
 `
-const TopBox = styled.div` 
-  width: 100%;
-  height: 10%;
-  display: flex;
-  align-items: center;
-  border: 2px solid white;
-  h1 {
-    color: white;
-  }
-`
-
-const LeftBox = styled.div`
-  float: left;
-  width: 50%;
-  height: 90%;
-  border: 2px solid red;
-`
-
-const RightBox = styled.div`
-  float: left;
-  width: 50%;
-  height: 90%;
-  border: 2px solid blue;
-`
-
-const Input = styled.input`
-  /* display: block; */
-  font-family: NanumMyeongjo;
-  margin-top: 30px;
-  border-top: none;
-  border-left:none;
-  border-right: none;
-  border-bottom: 2px solid white;
-  background-color:transparent;
-  font-size: 16px;
-  text-align: center;
-  color: white;
-  &:focus {
-    outline: none;
-    color : white;
-  }
-  &::placeholder {
-    color:white;
-    font-size: 15px;
-    text-align: center;
-  }
-`
-const SendButton = styled.button`
-  display: block;
-  margin: auto;
-  margin-top: 240px;
-  width: 200px;
-  height: 30px;
-  background-color: #fff;
-  font-size: 16px;
-  border: none;
-  border-radius: 2%;
-  box-shadow: 0px 4px 0px 1px rgb(150,150,150);
-  font-family: NanumMyeongjo;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    margin-top: 242px;
-    box-shadow: 0px 1px 0px 0px rgb(150,150,150);
-  }
-`
-
-const TextArea = styled.textarea`
-  font-family: NanumMyeongjo;
-  font-size: 16px;
-  text-align: center;
-  color: white;
-  border: 2px solid white;
-  border-radius: 2%;
-  background-color: transparent;
-  &:focus {
-    outline: none;
-    color : white;
-  }
-  &::placeholder {
-    color:white;
-    font-size: 16px;
-    text-align: center;
-  }
-`
 
 const About = () => {
   return (
@@ -167,20 +81,6 @@ const About = () => {
           <br /><br />
           studio uno offers visual products and olfactory stimulation. I hope you will have a richer experience through synesthesia stimulation.
         </p>
-        <ContactBox>
-          <TopBox>
-            <h1>Contact Us</h1>
-          </TopBox>
-          <LeftBox>
-            <Input placeholder="Name"/>
-            <Input placeholder="Email"/>
-            <Input placeholder="Phone"/>
-            <SendButton>Send</SendButton>
-          </LeftBox>
-          <RightBox>
-            <TextArea placeholder="Message"/>
-          </RightBox>
-        </ContactBox>
       </AboutBox>
 
     </>
