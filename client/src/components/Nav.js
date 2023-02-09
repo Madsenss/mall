@@ -467,9 +467,9 @@ const Nav = (props) => {
                       <MdOutlineClose className="close" onClick={closeSideBar} />
                       <SideMenuBox>
                         <Ul>
-                          <MainLi onClick={()=>{closeSideBar(); navigate('/about'); window.scrollTo({top : 0, behavior : 'smooth'})}}>ABOUT</MainLi>
+                          <MainLi onClick={()=>{closeSideBar(); navigate('/about'); window.scrollTo({top : 0, behavior : 'smooth'});}}>ABOUT</MainLi>
                           <MainLi onClick={()=>{setSideMenuOpen(!sideMenuOpen)}}>
-                            PRODUCT
+                            PRODUCTS
                             <MdOutlineArrowForwardIos className={sideMenuOpen ? "active" : "none"}/>
                           </MainLi>
                           <Ul>
@@ -496,7 +496,7 @@ const Nav = (props) => {
             }
             <NavMenu>
               <NavItem>
-                <span onMouseEnter={() => { setDetailOpen(true) }}>PRODUCT</span>
+                <span onMouseEnter={() => { setDetailOpen(true) }}>PRODUCTS</span>
               </NavItem>
               <NavItem>
                 <span style={{marginLeft : '0.7vw'}} onClick={()=>{navigate('/about'); window.scrollTo({top : 0, behavior : 'smooth'})}}>ABOUT</span>

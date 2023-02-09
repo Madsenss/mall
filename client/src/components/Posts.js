@@ -1,24 +1,36 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { MdOutlineShoppingCart, MdShare } from "react-icons/md"
+import { useNavigate } from "react-router-dom";
+
+const TabText = styled.div`
+  text-align: center;
+  background-color: rgb(255, 255, 255, 0.8);
+  /* background-color: #fff; */
+  font-size: 2vw;
+  font-weight: bold;
+  padding: 1.5vw 0vw 1vw 0vw;
+  font-family: NanumMyeongjo;
+`
 const TabBox = styled.div`
-  background-color: #fff;
+  background-color: rgb(255, 255, 255, 0.8);
+  /* background-color: #fff; */
   width: 100%;
   height: fit-content;
   display: flex;
   justify-content: center;
-  font-family: NanumMyeongjo;
-  padding: 50px 0px 50px 0px;
+  padding: 0vw 0vw 3vw 0vw;
 `
+
 const Tab = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5%;
-  margin: 10px;
-  width: 80px;
-  height: 30px;
+  margin: 0.8vw;
+  width: 4.7vw;
+  height: 1.8vw;
   box-shadow: 1px 1px 5px 0px rgb(200, 200, 200);
 
   &.active {
@@ -46,14 +58,14 @@ const Tab = styled.div`
 const PostBox = styled.div`
   width: 100%;
   min-height: 60vw;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255, 0.8);
+  /* background-color: #fff; */
 `
 const PostInnerBox = styled.div`
   width: 75%;
   height: fit-content;
   display: block;
   margin: auto;
-  background-color: #fff;
 `
 const PostItem = styled.div`
   cursor: pointer;
@@ -61,6 +73,11 @@ const PostItem = styled.div`
   width: 25%;
   height: fit-content;
   vertical-align: middle;
+  /* border: 1px solid black; */
+  &:hover .textbox > .subtitle {
+    border-top: 1px solid rgb(0, 0, 0, 0.8);
+    color: rgb(0, 0, 0, 0.8);
+  }
   .imgbox {
     position: relative;
     margin: auto;
@@ -79,7 +96,7 @@ const PostItem = styled.div`
       bottom: 0px;
       width: 100%;
       height: 2vw;
-      background-color: rgb(255, 255, 255, 0.8);
+      /* background-color: rgb(255, 255, 255, 0.6); */
       transform: translateY(2vw);
       transition: 0.5s;
     }
@@ -94,8 +111,7 @@ const PostItem = styled.div`
         font-size: 1.1vw;
         margin-right: 0.4vw;
         transition: 0.2s;
-        &:hover {
-          
+        &:hover {   
           color: #aaa;
         }
       }
@@ -110,7 +126,7 @@ const PostItem = styled.div`
   .textbox {
     font-family: NanumMyeongjo;
     padding: 0vw 0vw 0vw 2vw;
-    font-size: 0.9vw;
+    font-size: 0.8vw;
     .title {
       font-weight: bold;
       margin: 7px 0px 3px 0px;
@@ -127,81 +143,48 @@ const PostItem = styled.div`
 
 const Posts = () => { 
   const [tab, setTab] = useState('all');
+  const path = window.location.pathname;
+  const navigate = useNavigate();
+  const count = [0,1,2,3,4,5,6,7,8,9,1,1,1];
   return (
     <>
+      <TabText>
+        {path == '/' ? 'All Products' : null}
+        {path == '/objet' ? 'Objet' : null}
+        {path == '/photo' ? 'Photo' : null}
+        {path == '/postcard' ? 'Postcard' : null}
+        {path == '/wallpaper' ? 'Wallpaler' : null}
+      </TabText>
       <TabBox>
-        <Tab className={tab == 'all' ? 'active' : null} onClick={()=>{setTab('all')}}>all</Tab>
-        <Tab className={tab == 'objet' ? 'active' : null} onClick={()=>{setTab('objet')}}>objet</Tab>
-        <Tab className={tab == 'photo' ? 'active' : null} onClick={()=>{setTab('photo')}}>photo</Tab>
-        <Tab className={tab == 'postcard' ? 'active' : null} onClick={()=>{setTab('postcard')}}>postcard</Tab>
-        <Tab className={tab == 'wallpaper' ? 'active' : null} onClick={()=>{setTab('wallpaper')}}>wallpaper</Tab>
+        <Tab className={path == '/' ? 'active' : null} onClick={()=>{navigate('/');}}>all</Tab>
+        <Tab className={path == '/objet' ? 'active' : null} onClick={()=>{navigate('/objet');}}>objet</Tab>
+        <Tab className={path == '/photo' ? 'active' : null} onClick={()=>{navigate('/photo');}}>photo</Tab>
+        <Tab className={path == '/postcard' ? 'active' : null} onClick={()=>{navigate('/postcard');}}>postcard</Tab>
+        <Tab className={path == '/wallpaper' ? 'active' : null} onClick={()=>{navigate('/wallpaper');}}>wallpaper</Tab>
       </TabBox>
       <PostBox>
         <PostInnerBox>
-          <PostItem>
-            <div className="imgbox">
-              <div className="pricebox">
-                <div className="infobox">
-                  <MdOutlineShoppingCart className="icon"/>
-                  <MdShare className="icon"/>
-                  <span className="price">&#8361;39,000</span>
-                </div>
-              </div>
-            </div>
-            <div className="textbox">
-              <p className="title">the coaster</p>
-              <p className="subtitle">objects with a european sensibility</p>
-              {/* <p className="price">&#8361;39,000</p> */}
-            </div>
-          </PostItem>
-          <PostItem>
-            <div className="imgbox">
-                <div className="pricebox">
-                  <div className="infobox">
-                    <MdOutlineShoppingCart className="icon"/>
-                    <MdShare className="icon"/>
-                    <span className="price">&#8361;39,000</span>
+          {count.map((item, i)=>{
+            return (
+              <PostItem>
+                <div className="imgbox">
+                  <div className="pricebox">
+                    <div className="infobox">
+                      <MdOutlineShoppingCart className="icon"/>
+                      <MdShare className="icon"/>
+                      {/* <span className="price">&#8361;39,000</span> */}
+                      <span className="price">39,000</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            <div className="textbox">
-              <p className="title">the coaster</p>
-              <p className="subtitle">유럽 감성스타일 오브제입니다 가나다라</p>
-              {/* <p className="price">&#8361;39,000</p> */}
-            </div>
-          </PostItem>
-          <PostItem>
-          <div className="imgbox">
-              <div className="pricebox">
-                <div className="infobox">
-                  <MdOutlineShoppingCart className="icon"/>
-                  <MdShare className="icon"/>
-                  <span className="price">&#8361;39,000</span>
+                <div className="textbox">
+                  <p className="title">the coaster</p>
+                  <p className="subtitle">objects with a european sensibility</p>
                 </div>
-              </div>
-            </div>
-            <div className="textbox">
-              <p className="title">the coaster</p>
-              <p className="subtitle">유럽 감성스타일 오브제입니다 가나다라마바사아자차카타</p>
-              {/* <p className="price">&#8361;39,000</p> */}
-            </div>
-          </PostItem>
-          <PostItem>
-          <div className="imgbox">
-              <div className="pricebox">
-                <div className="infobox">
-                  <MdOutlineShoppingCart className="icon"/>
-                  <MdShare className="icon"/>
-                  <span className="price">&#8361;39,000</span>
-                </div>
-              </div>
-            </div>
-            <div className="textbox">
-              <p className="title">the coaster</p>
-              <p className="subtitle">objects with a european sensibilityas sensibilityas</p>
-              {/* <p className="price">&#8361;39,000</p> */}
-            </div>
-          </PostItem>      
+            </PostItem> 
+            )
+          })}
+   
         </PostInnerBox>
       </PostBox>
     </>

@@ -27,8 +27,25 @@ const Transparent = styled.div`
   width: 100%;
   height: 100vh;
   cursor: pointer;
+  &:hover .pathtext {
+    transform: translateX(0vw);
+    opacity: 1;
+    color: black;
+  }
+  .pathtext {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8vw;
+    font-family: NanumMyeongjo;
+    transition: 1.5s;
+    transform: translateX(-20vw);
+    opacity: 0.2;
+    color: white;
+  }
 `
-
 function App() {
   const [wheel, setWheel] = useState();
   const [y, setY] = useState();
@@ -60,6 +77,20 @@ function App() {
           <>  
             <Bg url="bg.jpg">
               <Nav wheel={wheel}/>
+              <Transparent onClick={()=>{teleport(); setWheel('down');}}>
+                <span className="pathtext">All Products</span>
+              </Transparent>
+              <div ref={content} id="content"/>
+              <Posts/>
+              <Footer/>
+              <ScrollUp wheel={wheel}/>
+            </Bg>    
+          </>
+        }/>
+        <Route path="/objet" element={
+          <>  
+            <Bg url="1.jpg">
+              <Nav wheel={wheel}/>
               <Transparent onClick={()=>{
                 teleport()
                 setWheel('down');
@@ -68,10 +99,25 @@ function App() {
               <Posts/>
               <Footer/>
               <ScrollUp wheel={wheel}/>
-            </Bg>
-            
+            </Bg>    
           </>
         }/>
+        <Route path="/photo" element={
+          <>  
+            <Bg url="2.jpg">
+              <Nav wheel={wheel}/>
+              <Transparent onClick={()=>{
+                teleport()
+                setWheel('down');
+              }}/>
+              <div ref={content} id="content"/>
+              <Posts/>
+              <Footer/>
+              <ScrollUp wheel={wheel}/>
+            </Bg>    
+          </>
+        }/>
+
         <Route path="/about" element={
           <>  
             <Bg url="about.jpg">
