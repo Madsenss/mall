@@ -8,6 +8,7 @@ import ScrollUp from "./components/ScrollUp.js";
 import About from "./components/about.js"
 
 import styled from "styled-components";
+import Detail from "./components/Detail.js";
 
 
 
@@ -28,7 +29,7 @@ const Transparent = styled.div`
   height: 100vh;
   cursor: pointer;
   &:hover .pathtext {
-    transform: translateX(0vw);
+    transform: translateX(0vw) rotate(0deg);
     opacity: 1;
     color: black;
   }
@@ -40,8 +41,8 @@ const Transparent = styled.div`
     align-items: center;
     font-size: 8vw;
     font-family: NanumMyeongjo;
-    transition: 1.5s;
-    transform: translateX(-20vw);
+    transition: 1.3s;
+    transform: translateX(-45vw) rotate(90deg);
     opacity: 0.2;
     color: white;
   }
@@ -89,12 +90,11 @@ function App() {
         }/>
         <Route path="/objet" element={
           <>  
-            <Bg url="1.jpg">
+            <Bg url="2.jpg">
               <Nav wheel={wheel}/>
-              <Transparent onClick={()=>{
-                teleport()
-                setWheel('down');
-              }}/>
+              <Transparent onClick={()=>{teleport(); setWheel('down');}}>
+                <span className="pathtext">Objet</span>
+              </Transparent>
               <div ref={content} id="content"/>
               <Posts/>
               <Footer/>
@@ -104,12 +104,11 @@ function App() {
         }/>
         <Route path="/photo" element={
           <>  
-            <Bg url="2.jpg">
+            <Bg url="11.jpg">
               <Nav wheel={wheel}/>
-              <Transparent onClick={()=>{
-                teleport()
-                setWheel('down');
-              }}/>
+              <Transparent onClick={()=>{teleport(); setWheel('down');}}>
+                <span className="pathtext">Photo</span>
+              </Transparent>
               <div ref={content} id="content"/>
               <Posts/>
               <Footer/>
@@ -128,6 +127,16 @@ function App() {
               }}/>
               <div ref={content} id="content"/>
               <About/>
+              <Footer/>
+              <ScrollUp wheel={wheel}/>
+            </Bg>      
+          </>
+        }/>
+        <Route path="/detail" element={
+          <>  
+            <Bg url="1.jpg">
+              <Nav wheel={wheel}/>
+              <Detail/>
               <Footer/>
               <ScrollUp wheel={wheel}/>
             </Bg>      

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const TabText = styled.div`
   text-align: center;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.9);
   /* background-color: #fff; */
   font-size: 2vw;
   font-weight: bold;
@@ -13,7 +13,7 @@ const TabText = styled.div`
   font-family: NanumMyeongjo;
 `
 const TabBox = styled.div`
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.9);
   /* background-color: #fff; */
   width: 100%;
   height: fit-content;
@@ -23,11 +23,12 @@ const TabBox = styled.div`
 `
 
 const Tab = styled.div`
+  font-family: NanumMyeongjo;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5%;
+  border-radius: 50px;
   margin: 0.8vw;
   width: 4.7vw;
   height: 1.8vw;
@@ -56,9 +57,11 @@ const Tab = styled.div`
 
 `
 const PostBox = styled.div`
+  position: relative;
+  z-index: 996;
   width: 100%;
   min-height: 60vw;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgb(255, 255, 255, 0.9);
   /* background-color: #fff; */
 `
 const PostInnerBox = styled.div`
@@ -72,7 +75,7 @@ const PostItem = styled.div`
   display: inline-block;
   width: 25%;
   height: fit-content;
-  vertical-align: middle;
+  vertical-align: top;
   /* border: 1px solid black; */
   &:hover .textbox > .subtitle {
     border-top: 1px solid rgb(0, 0, 0, 0.8);
@@ -166,14 +169,14 @@ const Posts = () => {
         <PostInnerBox>
           {count.map((item, i)=>{
             return (
-              <PostItem>
+              <PostItem onClick={()=>{navigate('/detail'); window.scrollTo({top : 0, behavior : 'auto'});}}>
                 <div className="imgbox">
                   <div className="pricebox">
                     <div className="infobox">
                       <MdOutlineShoppingCart className="icon"/>
                       <MdShare className="icon"/>
                       {/* <span className="price">&#8361;39,000</span> */}
-                      <span className="price">39,000</span>
+                      <span className="price">&#8361;39,000</span>
                     </div>
                   </div>
                 </div>
