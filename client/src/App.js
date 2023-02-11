@@ -134,7 +134,7 @@ function App() {
         }/>
         <Route path="/detail" element={
           <>  
-            <Bg url="1.jpg">
+            <Bg url="5.jpg">
               <Nav wheel={wheel}/>
               <Detail/>
               <Footer/>

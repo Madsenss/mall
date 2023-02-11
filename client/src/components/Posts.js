@@ -9,7 +9,7 @@ const TabText = styled.div`
   /* background-color: #fff; */
   font-size: 2vw;
   font-weight: bold;
-  padding: 1.5vw 0vw 1vw 0vw;
+  padding: 5vw 0vw 1vw 0vw;
   font-family: NanumMyeongjo;
 `
 const TabBox = styled.div`
