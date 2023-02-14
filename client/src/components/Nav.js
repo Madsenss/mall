@@ -512,9 +512,9 @@ const Nav = (props) => {
 
           <Col>
             <UserMenu>
-              <span>Login</span>
+              <span onClick={()=>{navigate('/login')}}>Login</span>
               <span className="none">|</span>
-              <span>Join</span>
+              <span onClick={()=>{navigate('/join')}}>Join</span>
               <MdSearch />
               <MdOutlineShoppingBag />
               <MdPersonOutline />

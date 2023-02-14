@@ -79,6 +79,9 @@ const DetailTop = styled.div`
     margin-bottom: 17px;
   }
   .scroll {
+    color: #aaa;
+    font-weight: bold;
+    font-family: NanumMyeongjo;
     margin-top: 15px;
     text-align: center;
   }
@@ -108,8 +111,14 @@ const DetailTop = styled.div`
 const DetailBottom = styled.div`
   /* border: 1px solid black; */
   width: 70%;
-  height: 1000px;
+  height: fit-content;
   margin: auto;
+  text-align: center;
+  img {
+    margin: 150px 0px 150px 0px;
+    width: 100%;
+    box-shadow: 4px 4px 6px 0px rgb(180, 180, 180);
+  }
 `
 
 const Detail = () => {
@@ -152,7 +161,9 @@ const Detail = () => {
           </div>
 
         </DetailTop>
-        <DetailBottom>1</DetailBottom>
+        <DetailBottom>
+          <img src="detail test.jpg"/>
+        </DetailBottom>
       </DetailBox>
     </>
   );

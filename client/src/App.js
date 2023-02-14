@@ -9,6 +9,8 @@ import About from "./components/about.js"
 
 import styled from "styled-components";
 import Detail from "./components/Detail.js";
+import UserLogin from "./components/UserLogin.js";
+import Join from "./components/Join.js";
 
 
 
@@ -134,12 +136,25 @@ function App() {
         }/>
         <Route path="/detail" element={
           <>  
-            <Bg url="5.jpg">
+            <Bg url="paper2.jpg">
               <Nav wheel={wheel}/>
               <Detail/>
               <Footer/>
               <ScrollUp wheel={wheel}/>
             </Bg>      
+          </>
+        }/>
+        <Route path="/login" element={
+          <>  
+            <Bg url="1.jpg">
+              <UserLogin/>
+            </Bg>    
+          </>
+        }/>
+        <Route path="/join" element={
+          <>  
+            <Bg url="paper2.jpg">
+            </Bg>    
           </>
         }/>
       </Routes> 
